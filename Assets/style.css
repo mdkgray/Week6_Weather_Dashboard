@@ -3,9 +3,11 @@ body {
     height: 100vh;
 }
 
-.jumbotron {
+.pageHeader {
     text-align: center;
-    background-color: linear-gradient(to right, rgb(54, 133, 197), rgb(3, 3, 95)); 
+    background-color: blue;
+    color: white;
+    padding: 10px;
 }
 
 .container {
