@@ -9,10 +9,12 @@ body {
     color: white;
     padding: 10px;
 }
-/* 
-.container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+
+.searchBox {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
- */
+
+#searchButton {
+    width: 100%;
+}

@@ -10,8 +10,26 @@
   <body>
     <header class="pageHeader">
       <h1 class="display-3">Weather Dashboard</h1>
-
     </header>
+
+    <div id="container">
+      <div class="row">
+        <div class="col-sm-4 searchBox">
+          <div id="searchCity" class="row d-grid gap-2 m-3">
+            <h2>Search for a city:</h2>
+            <form>
+              <input class="form-control" id ="cityInput" type="search" placeholder="Type search here" aria-label="default input example">
+              <br>
+              <button id ="searchButton" class="btn btn-primary" type="submit">Search</button>
+            </form>
+            </div>
+            <div id="history" class="row card">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
 
 
     <!-- JQuery script -->
