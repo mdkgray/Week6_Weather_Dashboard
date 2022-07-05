@@ -1,13 +1,11 @@
+html {
+    height: 100vh;
+    width: 100%;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     height: 100vh;
-}
-
-.pageHeader {
-    text-align: center;
-    background-color: #0606c3;
-    color: white;
-    padding: 10px;
 }
 
 .searchBox {
@@ -22,4 +20,8 @@ body {
 #searchCity {
     border-bottom: solid black 1px;
     padding-bottom: 20px;
+}
+
+.hidden {
+    display: none;
 }

@@ -9,27 +9,47 @@
   </head>
 
   <body>
-    <header class="pageHeader">
+    <header class="pageHeader text-bg-primary text-center p-3">
       <h1 class="display-3">Weather Dashboard</h1>
     </header>
 
-    <div id="container">
+    <div id="container" class="row justify-content-evenly">
+      <!-- Search Panel on left -->
       <div class="searchPanel col-sm-3">
+        <!-- Search city input -->
         <div id="searchCity" class="row d-grid gap-2 m-3">
           <h2>Search for a city:</h2>
           <form>
-            <input class="form-control" id ="cityInput" type="search" placeholder="Type search here" aria-label="default input example">
+            <input class="form-control" id ="cityInput" type="search" placeholder="Type city here" aria-label="default input example">
             <br>
             <button id ="searchButton" class="btn btn-primary" type="submit">Search</button>
           </form>
         </div>
-      
-        <div id="cityHistory">
-          <ul class="cityList"></ul>
-        </div>
+        <!-- Searched city history -->
+        <div id="cityHistory" class="row d-grid gap-2 m-3">
+          <ul id="searchedCities" class="hidden list-group mb-3 btn btn-secondary"></ul>
+          <button id="clearHistoryButton" class="btn btn-primary">Clear History</button>
+        </div>        
       </div>
 
+      <!-- Results panel on right -->
       <div class="resultsPanel col-sm-8">
+        <div id="citySpotlight" class="row mt-3 p-2 d-block border border-dark border-right-0">
+          <div class="h4 mb-4">
+            <span id="showCitySpotlight" class="mb-3"></span>
+            <span id="date"></span>
+            <img id="image" src="" alt="">
+          </div>
+          <p>Temperature: <span id="temperature"></span></p>
+          <p>Humidity: <span id="humidity"></span></p>
+          <p>Wind Speed: <span id="windSpeed"></span></p>
+          <p>UV Index: <span class="badge badge-danger" id="uvIndex"></span></p>
+        </div>
+
+        <div class="mt-3">
+          <h4>5-Day Forecast:</h4>
+          <div id="forecast" class="row mb-3 w-20 justify-content-evenly"></div>
+        </div>
 
       </div>
 
