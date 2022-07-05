@@ -18,3 +18,8 @@ body {
 #searchButton {
     width: 100%;
 }
+
+#searchCity {
+    border-bottom: solid black 1px;
+    padding-bottom: 20px;
+}
