@@ -5,7 +5,7 @@ var APIKey = '94f3fb3dbc8fcc33a80f69c4935cdade';
 var currentDate = dayjs('').format('DD/MM/YYYY')
 
 // query selectors for user input fields
-var city = document.getElementById('#cityInput');
+var city = $('#cityInput');
 
 // variable for search button and clear history button
 var searchButton = $('#searchButton');
@@ -18,12 +18,20 @@ var chosenCity = $('#chosenCity');
 var fiveDayForecast = $('#forecast');
 
 // event listeners for search button and clear history button
-searchButton.on('click', function () {
+searchButton.on('click', function(event) {
     alert('Hello World');
+    var yellow = $(event.target);
+    console.log(yellow);
+    console.log(event.target);
+    event.preventDefault();
 });
 
+console.log(searchButton);
 
-// function for API call 
+// function for API call -- 
+    //need to call the geocoding API then parse into main API = api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
+
+    // Main API = api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 
 // function to append data results into display fields
 
