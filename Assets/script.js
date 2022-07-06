@@ -1,5 +1,5 @@
 // global variables
-let APIKey = '94f3fb3dbc8fcc33a80f69c4935cdade';
+let APIKey = 'f8e8d9393c62f382bacf3be3a3c668a5';
 
 // variable for current date with day/js
 let currentDate = dayjs('').format('DD/MM/YYYY')
@@ -13,21 +13,63 @@ let pastSearchedCities = $('#searchedCities');
 let clearHistoryBttn = $('#clearHistoryButton');
 
 // variable for current city display 
-let currentCity = $('#currentCity');
+let searchedCity = $('#searchedCity');
 
 //variable for 5 day forecast 
 let fiveDayForecast = $('#forecast');
 
-// event listeners for search button and clear history button
-searchButton.on('click', function(event) {
-    alert('Hello World');
-    let yellow = $(event.target);
-    console.log(yellow);
-    console.log(event.target);
-    event.preventDefault();
-});
+let currentCity;
 
-console.log(searchButton);
+// event listeners for search button and clear history button
+searchBttn.on('click', handleFormSubmit);
+
+// Function to handle user input into form 
+function handleFormSubmit(event) {
+    event.preventDefault();
+    currentCity = cityInputEl.val().trim();
+
+    // clearCurrentWeather();
+    getCityCoordinates();
+
+    return;
+};
+
+
+function getCityCoordinates() {
+    let requestURL = "http://api.openweathermap.org/data/2.5/weather?q=" + currentCity + "&appid=" + APIKey;
+    let storedCities = JSON.parse(localStorage.getItem('cities')) || [];
+
+    fetch(requestURL)
+    .then(function (response) {
+        if (response.status >= 200 && response.status < 300) {
+            return response.json();
+          } else {
+            throw Error(response.statusText);
+          }  
+     })
+     .then(function (data) {
+        console.log(data);
+
+        let cityInfo = {
+            city: currentCity,
+            lon: data.coord.lon,
+            lat: data.coord.lat,
+        }
+
+        storedCities.push(cityInfo);
+        localStorage.setItem('cities', JSON.stringify(storedCities));
+
+        // displaySearchHistory();
+
+        return cityInfo;
+     })
+     .then(function (data) {
+        getWeatherData(data);
+     })
+     return;    
+}
+
+function getWeatherData() {};
 
 // function for API call -- 
     //need to call the geocoding API then parse into main API = api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
