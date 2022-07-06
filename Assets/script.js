@@ -1,24 +1,23 @@
 // global variables
 let APIKey = 'f8e8d9393c62f382bacf3be3a3c668a5';
-
 // variable for search button, past cities button and clear history button
 let searchBttn = $('#searchButton');
 let clearHistoryBttn = $('#clearHistoryButton');
-
 // query selectors for user input fields
 let cityInputEl = $('#cityInput');
-
+// variable for current city
 let currentCity;
-
+// variable for city search history
 let cityHistory = $('#cityHistory');
-
 // event listeners for search button and clear history button
 searchBttn.on('click', handleFormSubmit);
 
+let resultsPanel = $('#resultsPanel');
 
 // Function to handle user input into form 
 function handleFormSubmit(event) {
     event.preventDefault();
+    selectedCityConditions.innerHTML = "";
     currentCity = cityInputEl.val().trim();
 
     // clearCurrentWeather();
@@ -115,8 +114,6 @@ function getWeatherData(data) {
             //append current UV index with background colour
             let currentUVIndex = data.current.uvi;
             let currentUVIndexEl = $('<p>');
-            // let currentUVIndexSpan = $('<span>');
-            // currentUVIndexEl.append(currentUVIndexSpan);
 
             currentUVIndexEl.text(`UV: ${currentUVIndex}`)
             if (currentUVIndex <= 3) {
