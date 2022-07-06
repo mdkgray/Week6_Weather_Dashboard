@@ -23,6 +23,7 @@ let currentCity;
 // event listeners for search button and clear history button
 searchBttn.on('click', handleFormSubmit);
 
+
 // Function to handle user input into form 
 function handleFormSubmit(event) {
     event.preventDefault();
@@ -34,7 +35,7 @@ function handleFormSubmit(event) {
     return;
 };
 
-
+// function to get coordinates of city searched 
 function getCityCoordinates() {
     let requestURL = "http://api.openweathermap.org/data/2.5/weather?q=" + currentCity + "&appid=" + APIKey;
     let storedCities = JSON.parse(localStorage.getItem('cities')) || [];
@@ -50,7 +51,7 @@ function getCityCoordinates() {
      .then(function (data) {
         console.log(data);
 
-        let cityInfo = {
+        const cityInfo = {
             city: currentCity,
             lon: data.coord.lon,
             lat: data.coord.lat,
@@ -69,7 +70,21 @@ function getCityCoordinates() {
      return;    
 }
 
-function getWeatherData() {};
+function getWeatherData(data) {
+    let requestURL = 'https://api.openweathermap.org/data/2.5/weather?lat=' + {lat} + '&lon=' + {lon} + '&appid=' + APIKey;
+
+    fetch(requestURL)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log(data);
+        })
+
+
+
+
+};
 
 // function for API call -- 
     //need to call the geocoding API then parse into main API = api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
@@ -77,8 +92,6 @@ function getWeatherData() {};
     // Main API = api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 
 // function to append data results into display fields
-
-// functions for uv index colours 
 
 //function for local storage 
 
