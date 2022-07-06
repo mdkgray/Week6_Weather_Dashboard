@@ -17,14 +17,19 @@ let resultsPanel = $('#resultsPanel');
 // Function to handle user input into form 
 function handleFormSubmit(event) {
     event.preventDefault();
-    selectedCityConditions.innerHTML = "";
+    selectedCityConditions.innerHTML = '';
+    fiveDayForecastText.innerHTML = '';
+    fiveDayForecastTiles.innerHTML = '';
     currentCity = cityInputEl.val().trim();
 
-    // clearCurrentWeather();
     getCityCoordinates();
 
     return;
 };
+
+// function handleClearSearchHistory() 
+
+
 
 // function to get coordinates of city searched 
 function getCityCoordinates() {
@@ -51,7 +56,7 @@ function getCityCoordinates() {
         storedCities.push(cityInfo);
         localStorage.setItem('cities', JSON.stringify(storedCities));
 
-        // displaySearchHistory();
+        displaySearchHistory();
 
         return cityInfo;
      })
@@ -62,7 +67,7 @@ function getCityCoordinates() {
 };
 
 function getWeatherData(data) {
-    const requestURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + data.lat + '&lon=' + data.lon + '&units=metric&appid=' + APIKey;
+    const requestURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + data.lat + '&lon=' + data.lon + '&exclude=minutely,hourly,alerts&units=metric&appid=' + APIKey;
     
     fetch(requestURL)
         .then(function (response) {
@@ -131,17 +136,69 @@ function getWeatherData(data) {
             selectedCityConditions.append(currentUVIndexEl);
 
             //Create 5 day weather forecast
+            let fiveDayForecastText = $('#fiveDayForecastText');
+            let fiveDayForecastHeader = $('<h2>');
+            fiveDayForecastHeader.text('5 Day Weather Forecast');
+            fiveDayForecastText.append(fiveDayForecastHeader);
 
+            let fiveDayForecastTiles = $('#fiveDayForecastTiles');
 
+            // pull data for daily forecasts and display for 5 days
+            for (let i = 1; i <= 5; i++) {
+                let date;
+                let icon;
+                let temperature;
+                let humidity;
+                let windspeed;
 
+                date = data.daily[i].dt;
+                date = moment.unix(date).format('DD/MM/YYYY');
+                icon = data.daily[i].weather[0].icon;
+                temperature = data.daily[i].temperature;
+                humidity = data.daily[i].humidity;
+                windspeed = data.daily[i].wind_speed;
+
+                //create card for daily weather forecast
+                let weatherCard = $('<div>');
+                weatherCard.classList.add('card', 'col-2', 'm-1', 'bg-primary', 'text-white');
+                //text for inside the card
+                let cardText = $('<div>');
+                cardText.classList.add('card-body');
+                cardText.innerHTML = `<h6>${date}</h6>
+                <img src = 'http://openweathermap.org/img/wn/${icon}.png'> <br>
+                ${temperature}°C <br>
+                ${humidity}% <br>
+                ${windspeed}km/h`
+
+                weatherCard.append(cardText);
+                fiveDayForecastTiles.append(weatherCard);
+            }
         })
     return;
 };
 
-// function for API call -- 
-    //need to call the geocoding API then parse into main API = api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
+function displaySearchHistory(event) {
+    let storedCities = JSON.parse(localStorage.getItem('cities')) || [];
+    let citySearchHistory = $('#cityHistory');
 
-    // Main API = api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+    citySearchHistory.innerHTML = '';
+
+    for ( i = 0; i < storedCities.length; i++) {
+        let searchedCityButton = document.createElement('button');
+        searchedCityButton.classList.add('btn', 'btn-primary', 'my-2', 'past-city');
+        searchedCityButton.setAttribute('style', 'width: 100%');
+        citySearchHistory.append(searchedCityButton);
+    }
+    return;
+}
+
+// function clearCurrentCity()
+
+
+
+// displaySearchHistory();
+
+
 
 // function to append data results into display fields
     //append 5 day forecast to page
