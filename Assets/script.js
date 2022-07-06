@@ -65,7 +65,7 @@ function getCityCoordinates() {
         getWeatherData(data);
      })
      return;    
-}
+};
 
 function getWeatherData(data) {
     const requestURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + data.lat + '&lon=' + data.lon + '&appid=' + APIKey;
@@ -91,15 +91,66 @@ function getWeatherData(data) {
             currentDate = moment.unix(currentDate).format('DD/MM/YYYY');
             let currentDateDisplay = $('<span>');
             currentDateDisplay.text(` (${currentDate}) `);
-            selectedCityConditions.append(currentDateDisplay);  
+            searchedCityName.append(currentDateDisplay);  
+
+            //weather icon append to page
+            // let currentWeatherIcon = data.current.weather[0].icon;
+            // currentWeatherIcon = $('<img>');
+            // let iconURL = ("http://openweathermap.org/img/w/" + currentWeatherIcon + ".png");
+            // $(currentWeatherIcon).attr('src', iconURL);
+            // searchedCityName.append(currentWeatherIcon);
+
+            let currentWeatherIcon = data.current.weather[0].icon;
+            currentWeatherIcon = $('<img>');
+            currentWeatherIcon.attr('src', 'http://openweathermap.org/img/wn/' + currentWeatherIcon + '.png');
+            searchedCityName.append(currentWeatherIcon);
+
+            
+            // append current temperature
+            let currentTemp = data.current.temp;
+            let currentTempEl = $('<p>');
+            currentTempEl.text(`Temperature: ${currentTemp}°C`);
+            selectedCityConditions.append(currentTempEl);
+
+            //append current humidity
+            let currentHumidity = data.current.humidity;
+            let currentHumidityEl = $('<p>');
+            currentHumidityEl.text(`Humidity: ${currentHumidity}%`);
+            selectedCityConditions.append(currentHumidityEl);
+
+            // append current wind 
+            let currentWind = data.current.wind_speed;
+            let currentWindEl = $('<p>');
+            currentWindEl.text(`Wind speed: ${currentWind}km/h`);
+            selectedCityConditions.append(currentWindEl);
+
+            //append current UV index with background colour
+            let currentUVIndex = data.current.uvi;
+            let currentUVIndexEl = $('<p>');
+            let currentUVIndexSpan = $('<span>');
+            currentUVIndexEl.append(currentUVIndexSpan);
+
+            currentUVIndexEl.text(`UV: ${currentUVIndex}`)
+            if (currentUVIndex <= 3) {
+                currentUVIndexSpan.css({'background-color': 'green', 'color': 'white'});
+            } else if (currentUVIndex <= 6) {
+                currentUVIndexSpan.css({'background-color': 'yellow', 'color': 'black'});
+            } else if (currentUVIndex <= 8) {
+                currentUVIndexSpan.css({'background-color': 'orange', 'color': 'white'});
+            } else if (currentUVIndex <= 11) {
+                currentUVIndexSpan.css({'background-color': 'red', 'color': 'white'});
+            } else {
+                currentUVIndexSpan.css({'background-color': 'violet', 'color': 'white'});
+            }
+            
+            selectedCityConditions.append(currentUVIndexEl);
+
+            //Create 5 day weather forecast
 
 
 
         })
-
-
-
-
+    return;
 };
 
 // function for API call -- 
@@ -108,21 +159,10 @@ function getWeatherData(data) {
     // Main API = api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 
 // function to append data results into display fields
+    //append 5 day forecast to page
 
 //function for local storage 
 
 // function to append local storage to page 
 
 // function to clear local storage
-
-
-// WHEN I search for a city
-// THEN I am presented with current and future conditions for that city and that city is added to the search history
-// WHEN I view current weather conditions for that city
-// THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-// WHEN I view the UV index
-// THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-// WHEN I view future weather conditions for that city
-// THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
-// WHEN I click on a city in the search history
-// THEN I am again presented with current and future conditions for that city
