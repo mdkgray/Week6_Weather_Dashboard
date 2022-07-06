@@ -1,21 +1,16 @@
 // global variables
 let APIKey = 'f8e8d9393c62f382bacf3be3a3c668a5';
 
+// variable for search button, past cities button and clear history button
+let searchBttn = $('#searchButton');
+let clearHistoryBttn = $('#clearHistoryButton');
+
 // query selectors for user input fields
 let cityInputEl = $('#cityInput');
 
-// variable for search button, past cities button and clear history button
-let searchBttn = $('#searchButton');
-// let pastSearchedCities = $('#searchedCities');
-let clearHistoryBttn = $('#clearHistoryButton');
-
-// variable for current city display 
-// let searchedCity = $('#searchedCity');
-
-//variable for 5 day forecast 
-let fiveDayForecast = $('#forecast');
-
 let currentCity;
+
+let cityHistory = $('#cityHistory');
 
 // event listeners for search button and clear history button
 searchBttn.on('click', handleFormSubmit);
@@ -68,7 +63,7 @@ function getCityCoordinates() {
 };
 
 function getWeatherData(data) {
-    const requestURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + data.lat + '&lon=' + data.lon + '&appid=' + APIKey;
+    const requestURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + data.lat + '&lon=' + data.lon + '&units=metric&appid=' + APIKey;
     
     fetch(requestURL)
         .then(function (response) {
@@ -94,17 +89,10 @@ function getWeatherData(data) {
             searchedCityName.append(currentDateDisplay);  
 
             //weather icon append to page
-            // let currentWeatherIcon = data.current.weather[0].icon;
-            // currentWeatherIcon = $('<img>');
-            // let iconURL = ("http://openweathermap.org/img/w/" + currentWeatherIcon + ".png");
-            // $(currentWeatherIcon).attr('src', iconURL);
-            // searchedCityName.append(currentWeatherIcon);
-
             let currentWeatherIcon = data.current.weather[0].icon;
-            currentWeatherIcon = $('<img>');
-            currentWeatherIcon.attr('src', 'http://openweathermap.org/img/wn/' + currentWeatherIcon + '.png');
-            searchedCityName.append(currentWeatherIcon);
-
+            let currentWeatherIconImg = $('<img>');
+            currentWeatherIconImg.attr('src', 'http://openweathermap.org/img/wn/' + currentWeatherIcon + '.png');
+            searchedCityName.append(currentWeatherIconImg);
             
             // append current temperature
             let currentTemp = data.current.temp;
@@ -127,20 +115,20 @@ function getWeatherData(data) {
             //append current UV index with background colour
             let currentUVIndex = data.current.uvi;
             let currentUVIndexEl = $('<p>');
-            let currentUVIndexSpan = $('<span>');
-            currentUVIndexEl.append(currentUVIndexSpan);
+            // let currentUVIndexSpan = $('<span>');
+            // currentUVIndexEl.append(currentUVIndexSpan);
 
             currentUVIndexEl.text(`UV: ${currentUVIndex}`)
             if (currentUVIndex <= 3) {
-                currentUVIndexSpan.css({'background-color': 'green', 'color': 'white'});
+                currentUVIndexEl.css({'background-color': 'green', 'color': 'white', 'width': 'auto'});
             } else if (currentUVIndex <= 6) {
-                currentUVIndexSpan.css({'background-color': 'yellow', 'color': 'black'});
+                currentUVIndexEl.css({'background-color': 'yellow', 'color': 'black', 'width': 'auto'});
             } else if (currentUVIndex <= 8) {
-                currentUVIndexSpan.css({'background-color': 'orange', 'color': 'white'});
+                currentUVIndexEl.css({'background-color': 'orange', 'color': 'white', 'width': 'auto'});
             } else if (currentUVIndex <= 11) {
-                currentUVIndexSpan.css({'background-color': 'red', 'color': 'white'});
+                currentUVIndexEl.css({'background-color': 'red', 'color': 'white', 'width': 'auto'});
             } else {
-                currentUVIndexSpan.css({'background-color': 'violet', 'color': 'white'});
+                currentUVIndexEl.css({'background-color': 'violet', 'color': 'white', 'width': 'auto'});
             }
             
             selectedCityConditions.append(currentUVIndexEl);
