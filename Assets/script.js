@@ -1,26 +1,27 @@
 // global variables
-var APIKey = '94f3fb3dbc8fcc33a80f69c4935cdade';
+let APIKey = '94f3fb3dbc8fcc33a80f69c4935cdade';
 
 // variable for current date with day/js
-var currentDate = dayjs('').format('DD/MM/YYYY')
+let currentDate = dayjs('').format('DD/MM/YYYY')
 
 // query selectors for user input fields
-var city = $('#cityInput');
+let cityInputEl = $('#cityInput');
 
-// variable for search button and clear history button
-var searchButton = $('#searchButton');
-var clearHistoryButton = $('#clearHistoryButton');
+// variable for search button, past cities button and clear history button
+let searchBttn = $('#searchButton');
+let pastSearchedCities = $('#searchedCities');
+let clearHistoryBttn = $('#clearHistoryButton');
 
-// variable for city spotlight display 
-var chosenCity = $('#chosenCity');
+// variable for current city display 
+let currentCity = $('#currentCity');
 
 //variable for 5 day forecast 
-var fiveDayForecast = $('#forecast');
+let fiveDayForecast = $('#forecast');
 
 // event listeners for search button and clear history button
 searchButton.on('click', function(event) {
     alert('Hello World');
-    var yellow = $(event.target);
+    let yellow = $(event.target);
     console.log(yellow);
     console.log(event.target);
     event.preventDefault();
