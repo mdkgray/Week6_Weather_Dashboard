@@ -73,7 +73,7 @@ function getWeatherData(data) {
 
             // set styling for results box
             let selectedCityConditions = $('#selectedCityConditions');
-            selectedCityConditions.addClass('border border-secondary mt-3');
+            selectedCityConditions.addClass('border rounded border-dark bg-secondary bg-gradient text-dark mt-3');
 
             // set <h2> for searched city and display
             let searchedCityName = $('<h2>');

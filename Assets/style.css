@@ -21,7 +21,3 @@ body {
 .hidden {
     display: none;
 }
-
-#selectedCityConditions {
-    background-color: lightgray;
-}
