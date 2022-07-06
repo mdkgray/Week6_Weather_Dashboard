@@ -1,19 +1,16 @@
 // global variables
 let APIKey = 'f8e8d9393c62f382bacf3be3a3c668a5';
 
-// variable for current date with day/js
-let currentDate = dayjs('').format('DD/MM/YYYY')
-
 // query selectors for user input fields
 let cityInputEl = $('#cityInput');
 
 // variable for search button, past cities button and clear history button
 let searchBttn = $('#searchButton');
-let pastSearchedCities = $('#searchedCities');
+// let pastSearchedCities = $('#searchedCities');
 let clearHistoryBttn = $('#clearHistoryButton');
 
 // variable for current city display 
-let searchedCity = $('#searchedCity');
+// let searchedCity = $('#searchedCity');
 
 //variable for 5 day forecast 
 let fiveDayForecast = $('#forecast');
@@ -71,14 +68,33 @@ function getCityCoordinates() {
 }
 
 function getWeatherData(data) {
-    let requestURL = 'https://api.openweathermap.org/data/2.5/weather?lat=' + {lat} + '&lon=' + {lon} + '&appid=' + APIKey;
-
+    const requestURL = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + data.lat + '&lon=' + data.lon + '&appid=' + APIKey;
+    
     fetch(requestURL)
         .then(function (response) {
             return response.json();
         })
         .then(function(data) {
             console.log(data);
+
+            // set styling for results box
+            let selectedCityConditions = $('#selectedCityConditions');
+            selectedCityConditions.addClass('border border-secondary mt-3');
+
+            // set <h2> for searched city and display
+            let searchedCityName = $('<h2>');
+            searchedCityName.text(currentCity);
+            selectedCityConditions.append(searchedCityName);
+
+            //set current date and append to page
+            let currentDate = data.current.dt;
+            currentDate = moment.unix(currentDate).format('DD/MM/YYYY');
+            let currentDateDisplay = $('<span>');
+            currentDateDisplay.text(` (${currentDate}) `);
+            selectedCityConditions.append(currentDateDisplay);  
+
+
+
         })
 
 
