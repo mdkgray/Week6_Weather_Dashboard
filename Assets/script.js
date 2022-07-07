@@ -31,12 +31,14 @@ function handleFormSubmit(event) {
 };
 
 function clearHistory(event) {
+    console.log($('#cityHistory'));
     event.preventDefault();
-    let cityHistory = $('#cityHistory');
+    $('#cityHistory').innerHTML = "";
+    // let cityHistory = $('#cityHistory');
 
-    localStorage.removeItem('cities');
-    localStorage.clear();
-    cityHistory.innerHTML = ''; 
+    // localStorage.removeItem('cities');
+    // localStorage.clear();
+    // cityHistory.innerHTML = ''; 
 
     return;
 }
@@ -169,20 +171,27 @@ function getWeatherData(data) {
                 humidity = data.daily[i].humidity;
                 windspeed = data.daily[i].wind_speed;
 
+                // $(fiveDayForecastTiles).empty();
+
+                console.log(date, temperature, humidity, windspeed);
                 //create card for daily weather forecast
                 let weatherCard = $('<div>');
                 weatherCard.addClass('card col-2 m-1 bg-primary text-white');
                 //text for inside the card
                 let weatherCardText = $('<div>');
                 weatherCardText.addClass('card-body');
-                weatherCardText.innerHTML = `<h6>${date}</h6>
+                var speedvalue = $("p").text(`wind speed: ${windspeed}`);
+                weatherCard.append(speedvalue);
+
+                let weatherInfo = `<div class='card-body'><h6>${date}</h6>
                 <img src = 'http://openweathermap.org/img/wn/${icon}.png'> <br>
                 ${temperature}°C <br>
                 ${humidity}% <br>
-                ${windspeed}km/h`;
+                ${windspeed}km/h</div>`;
+                console.log(weatherCardText);
 
                 weatherCard.append(weatherCardText);
-                fiveDayForecastTiles.append(weatherCard);
+                fiveDayForecastTiles.append(weatherInfo);
             }
         })
     return;
