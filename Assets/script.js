@@ -160,7 +160,7 @@ function getWeatherData(data) {
 
                 //create card for daily weather forecast
                 let weatherCard = $('<div>');
-                weatherCard.addClass('card', 'col-2', 'm-1', 'bg-primary', 'text-white');
+                weatherCard.addClass('card col-2 m-1 bg-primary text-white');
                 //text for inside the card
                 let cardText = $('<div>');
                 cardText.addClass('card-body');
