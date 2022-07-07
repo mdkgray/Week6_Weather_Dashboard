@@ -178,10 +178,7 @@ function getWeatherData(data) {
                 let weatherCardText = $('<div>');
                 weatherCardText.addClass('card-body');
 
-                // var speedvalue = $("p").text(`wind speed: ${windspeed}`);
-                // weatherCard.append(speedvalue);
-
-                let weatherInfo = `<div class='card-body card col-2 m-1 bg-primary text-white'> <h6>${date}</h6>
+                let weatherInfo = `<div class='card-body card col-2 m-1 bg-primary text-white'> <h6 class='text-center fs-3'>${date}</h6>
                 <img src = 'http://openweathermap.org/img/wn/${icon}.png'> <br>
                 Temp: ${temperature}°C <br>
                 Humidity: ${humidity}% <br>
