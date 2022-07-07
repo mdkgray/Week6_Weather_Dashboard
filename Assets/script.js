@@ -31,12 +31,12 @@ function handleFormSubmit(event) {
 };
 
 function clearHistory(event) {
-    console.log($('#cityHistory'));
     event.preventDefault();
-    $('#cityHistory').innerHTML = "";
-    // let cityHistory = $('#cityHistory');
 
-    // localStorage.removeItem('cities');
+    $("#cityHistory").children().remove();
+    localStorage.removeItem('cities');
+
+    // let cityHistory = $('#cityHistory');
     // localStorage.clear();
     // cityHistory.innerHTML = ''; 
 
@@ -171,24 +171,21 @@ function getWeatherData(data) {
                 humidity = data.daily[i].humidity;
                 windspeed = data.daily[i].wind_speed;
 
-                // $(fiveDayForecastTiles).empty();
-
-                console.log(date, temperature, humidity, windspeed);
                 //create card for daily weather forecast
                 let weatherCard = $('<div>');
                 weatherCard.addClass('card col-2 m-1 bg-primary text-white');
                 //text for inside the card
                 let weatherCardText = $('<div>');
                 weatherCardText.addClass('card-body');
-                var speedvalue = $("p").text(`wind speed: ${windspeed}`);
-                weatherCard.append(speedvalue);
 
-                let weatherInfo = `<div class='card-body'><h6>${date}</h6>
+                // var speedvalue = $("p").text(`wind speed: ${windspeed}`);
+                // weatherCard.append(speedvalue);
+
+                let weatherInfo = `<div class='card-body card col-2 m-1 bg-primary text-white'> <h6>${date}</h6>
                 <img src = 'http://openweathermap.org/img/wn/${icon}.png'> <br>
-                ${temperature}°C <br>
-                ${humidity}% <br>
-                ${windspeed}km/h</div>`;
-                console.log(weatherCardText);
+                Temp: ${temperature}°C <br>
+                Humidity: ${humidity}% <br>
+                Wind Speed: ${windspeed}km/h</div>`;
 
                 weatherCard.append(weatherCardText);
                 fiveDayForecastTiles.append(weatherInfo);
