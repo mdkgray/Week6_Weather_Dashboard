@@ -205,7 +205,7 @@ function displaySearchHistory() {
 }
 
 function showPastCity(event) {
-    let buttonClick = event.target;
+    let buttonClick = $(event.target);
 
     if (Element.matches('past-city')) {
         currentCity = buttonClick.textContent;
