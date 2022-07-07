@@ -160,10 +160,10 @@ function getWeatherData(data) {
 
                 //create card for daily weather forecast
                 let weatherCard = $('<div>');
-                weatherCard.classList.add('card', 'col-2', 'm-1', 'bg-primary', 'text-white');
+                weatherCard.addClass('card', 'col-2', 'm-1', 'bg-primary', 'text-white');
                 //text for inside the card
                 let cardText = $('<div>');
-                cardText.classList.add('card-body');
+                cardText.addClass('card-body');
                 cardText.innerHTML = `<h6>${date}</h6>
                 <img src = 'http://openweathermap.org/img/wn/${icon}.png'> <br>
                 ${temperature}°C <br>
