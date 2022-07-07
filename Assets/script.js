@@ -162,22 +162,22 @@ function getWeatherData(data) {
                 let weatherCard = $('<div>');
                 weatherCard.addClass('card col-2 m-1 bg-primary text-white');
                 //text for inside the card
-                let cardText = $('<div>');
-                cardText.addClass('card-body');
-                cardText.innerHTML = `<h6>${date}</h6>
+                let weatherCardText = $('<div>');
+                weatherCardText.addClass('card-body');
+                weatherCardText.innerHTML = `<h6>${date}</h6>
                 <img src = 'http://openweathermap.org/img/wn/${icon}.png'> <br>
                 ${temperature}°C <br>
                 ${humidity}% <br>
-                ${windspeed}km/h`
+                ${windspeed}km/h`;
 
-                weatherCard.append(cardText);
+                weatherCard.append(weatherCardText);
                 fiveDayForecastTiles.append(weatherCard);
             }
         })
     return;
 };
 
-function displaySearchHistory(event) {
+function displaySearchHistory() {
     let storedCities = JSON.parse(localStorage.getItem('cities')) || [];
     let citySearchHistory = $('#cityHistory');
 
@@ -187,6 +187,7 @@ function displaySearchHistory(event) {
         let searchedCityButton = document.createElement('button');
         searchedCityButton.classList.add('btn', 'btn-primary', 'my-2', 'past-city');
         searchedCityButton.setAttribute('style', 'width: 100%');
+        searchedCityButton.append(currentCity);
         citySearchHistory.append(searchedCityButton);
     }
     return;
