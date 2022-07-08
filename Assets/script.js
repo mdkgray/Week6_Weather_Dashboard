@@ -200,6 +200,8 @@ function displaySearchHistory() {
         searchedCityButton.setAttribute('style', 'width: 100%');
         searchedCityButton.append(currentCity);
         citySearchHistory.append(searchedCityButton);
+
+        return;
     }
     return;
 }
