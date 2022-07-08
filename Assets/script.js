@@ -41,7 +41,7 @@ function clearHistory(event) {
 
 // function to get coordinates of city searched 
 function getCityCoordinates() {
-    let requestURL = "http://api.openweathermap.org/data/2.5/weather?q=" + currentCity + "&appid=" + APIKey;
+    let requestURL = "https://api.openweathermap.org/data/2.5/weather?q=" + currentCity + "&appid=" + APIKey;
     let storedCities = JSON.parse(localStorage.getItem('cities')) || [];
 
     fetch(requestURL)
@@ -104,7 +104,7 @@ function getWeatherData(data) {
             //weather icon append to page
             let currentWeatherIcon = data.current.weather[0].icon;
             let currentWeatherIconImg = $('<img>');
-            currentWeatherIconImg.attr('src', 'http://openweathermap.org/img/wn/' + currentWeatherIcon + '.png');
+            currentWeatherIconImg.attr('src', 'https://openweathermap.org/img/wn/' + currentWeatherIcon + '.png');
             searchedCityName.append(currentWeatherIconImg);
             
             // append current temperature
@@ -175,7 +175,7 @@ function getWeatherData(data) {
                 weatherCardText.addClass('card-body');
 
                 let weatherInfo = `<div class='card-body card col-2 m-1 bg-primary text-white'> <h6 class='text-center fs-5'>${date}</h6>
-                <img src = 'http://openweathermap.org/img/wn/${icon}.png'> <br>
+                <img src = 'https://openweathermap.org/img/wn/${icon}.png'> <br>
                 Temp: ${temperature}°C <br>
                 Humidity: ${humidity}% <br>
                 Wind Speed: ${windspeed}km/h</div>`;
@@ -216,7 +216,7 @@ function showPastCity(event) {
         fiveDayForecastText.innerHTML = '';
         fiveDayForecastTiles.innerHTML = '';
 
-        clearCurrentCity();
+        // clearCurrentCity();
 
         let requestURL = "https://api.openweathermap.org/data/2.5/weather?q=" + currentCity + "&appid=" + APIKey;
 
