@@ -35,10 +35,7 @@ function clearHistory(event) {
 
     $("#cityHistory").children().remove();
     localStorage.removeItem('cities');
-
-    // let cityHistory = $('#cityHistory');
-    // localStorage.clear();
-    // cityHistory.innerHTML = ''; 
+    localStorage.clear();
 
     return;
 }
