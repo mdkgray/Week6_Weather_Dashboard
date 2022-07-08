@@ -47,6 +47,6 @@ JavaScript:
 
 ## Acknowledgements  
 
-- University of Sydney Coding Bootcamp
+University of Sydney Coding Bootcamp
 
 [OpenWeather One Call API](https://openweathermap.org/api/one-call-api)
