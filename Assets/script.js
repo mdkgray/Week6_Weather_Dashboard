@@ -239,6 +239,7 @@ function showPastCity(event) {
         })
         .then (function(data) {
             getWeatherData(data);
+            //unsure how to show new city name rather than previous city
             selectedCityConditions.innerHTML = currentCity;
         })
     }
