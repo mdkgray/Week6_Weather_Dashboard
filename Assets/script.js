@@ -12,9 +12,8 @@ let cityInputEl = $('#cityInput');
 // variable for current city
 let currentCity;
 
-// variable for city search history
+// variable for city search history and results panel 
 let cityHistory = $('#cityHistory');
-
 let resultsPanel = $('#resultsPanel');
 
 // Function to handle user input into form 
