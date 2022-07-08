@@ -175,7 +175,7 @@ function getWeatherData(data) {
                 let weatherCardText = $('<div>');
                 weatherCardText.addClass('card-body');
 
-                let weatherInfo = `<div class='card-body card col-2 m-1 bg-primary text-white'> <h6 class='text-center fs-3'>${date}</h6>
+                let weatherInfo = `<div class='card-body card col-2 m-1 bg-primary text-white'> <h6 class='text-center fs-5'>${date}</h6>
                 <img src = 'http://openweathermap.org/img/wn/${icon}.png'> <br>
                 Temp: ${temperature}°C <br>
                 Humidity: ${humidity}% <br>
@@ -209,12 +209,17 @@ function displaySearchHistory() {
 function showPastCity(event) {
     let buttonClick = $(event.target);
 
-    if (Element.matches('past-city')) {
-        currentCity = buttonClick.textContent;
+    if (buttonClick.hasClass('past-city')) {
+        let currentCity = buttonClick.text();
+
+        event.preventDefault();
+        selectedCityConditions.innerHTML = '';
+        fiveDayForecastText.innerHTML = '';
+        fiveDayForecastTiles.innerHTML = '';
 
         clearCurrentCity();
 
-        let requestURL = "http://api.openweathermap.org/data/2.5/weather?q=" + currentCity + "&appid=" + APIKey;
+        let requestURL = "https://api.openweathermap.org/data/2.5/weather?q=" + currentCity + "&appid=" + APIKey;
 
         fetch(requestURL)
         .then(function (response) {
@@ -234,6 +239,7 @@ function showPastCity(event) {
         })
         .then (function(data) {
             getWeatherData(data);
+            selectedCityConditions.innerHTML = currentCity;
         })
     }
     return;
@@ -255,13 +261,3 @@ searchBttn.on('click', handleFormSubmit);
 clearHistoryBttn.on('click', clearHistory);
 
 showPrevCityBttn.on('click', showPastCity);
-
-
-// function to append data results into display fields
-    //append 5 day forecast to page
-
-//function for local storage 
-
-// function to append local storage to page 
-
-// function to clear local storage
