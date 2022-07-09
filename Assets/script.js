@@ -195,7 +195,7 @@ function displaySearchHistory() {
 
     for ( i = 0; i < storedCities.length; i++) {
         let searchedCityButton = document.createElement('button');
-        searchedCityButton.classList.add('btn', 'btn-primary', 'my-2', 'past-city');
+        searchedCityButton.classList.add('btn', 'btn-secondary', 'my-2', 'past-city');
         searchedCityButton.setAttribute('style', 'width: 100%');
         searchedCityButton.append(currentCity);
         citySearchHistory.append(searchedCityButton);
