@@ -46,6 +46,7 @@ JavaScript:
 
 ![Screenshot-1](./Assets/Screenshots/weather_dashboard_1.PNG)
 ![Screenshot-2](./Assets/Screenshots/weather_dashboard_2.PNG)
+![Screenshot-2](./Assets/Screenshots/weather_dashboard_3.PNG)
 
 ## Acknowledgements  
 
