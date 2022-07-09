@@ -209,7 +209,7 @@ function showPastCity(event) {
     let buttonClick = $(event.target);
 
     if (buttonClick.hasClass('past-city')) {
-        let currentCity = buttonClick.text();
+        currentCity = buttonClick.text();
 
         event.preventDefault();
         selectedCityConditions.innerHTML = '';
@@ -238,8 +238,6 @@ function showPastCity(event) {
         })
         .then (function(data) {
             getWeatherData(data);
-            //unsure how to show new city name rather than previous city
-            selectedCityConditions.innerHTML = currentCity;
         })
     }
     return;
