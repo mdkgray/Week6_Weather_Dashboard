@@ -21,7 +21,7 @@ The motivation for this project was to create an application to be used by a tra
 HTML:
 - Added Bootstrap stylesheet and Bootstrap core javascript to the page.
 - Linking of the CSS to the page.
-- Linking of JQuery, Moment JS and my own JavaScript to the page.
+- Linking of JQuery, Moment.js and my own JavaScript to the page.
 - Writing of page structure to include city weather search field with buttons.
 - Creating empty sections of the page to be populated once API data is called.
 
