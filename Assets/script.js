@@ -216,8 +216,6 @@ function showPastCity(event) {
         fiveDayForecastText.innerHTML = '';
         fiveDayForecastTiles.innerHTML = '';
 
-        // clearCurrentCity();
-
         let requestURL = "https://api.openweathermap.org/data/2.5/weather?q=" + currentCity + "&appid=" + APIKey;
 
         fetch(requestURL)
