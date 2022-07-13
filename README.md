@@ -40,7 +40,7 @@ JavaScript:
 
 ## Website URL
 
-[Click here to view the website](https://mdkgray.github.io/week6_weather_dashboard/)
+[Click here to view the website](https://mdkgray.github.io/weather_dashboard/)
 
 ## Screenshots
 
