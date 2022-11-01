@@ -1,4 +1,4 @@
-# Week 6 Weather Dashboard
+# Weather Dashboard
 
 ### By Mackenzie Gray
 
